@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#novoQuiz,
+#inicio {
+    width: 200px;
+    height: 45px;
+    border: 2px solid slateblue;
+    border-radius: 8px;
+    background-color: white;
+    color: slateblue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#novoQuiz:hover,
+#inicio:hover {
+    background-color: slateblue;
+    color: white;
+}
+
+.container-quiz {
+    width: 90%;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 30px;
+
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+
+    text-align: center;
+}
+
+.container-quiz h1 {
+    color: slateblue;
+    margin-bottom: 25px;
+    font-size: 2.2rem;
+}
+
+#pergunta {
+    color: #222;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+#alternativas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#alternativas button {
+    padding: 14px;
+    border: 2px solid slateblue;
+    border-radius: 8px;
+
+    background-color: white;
+    color: slateblue;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#alternativas button:hover {
+    background-color: slateblue;
+    color: white;
+}
+
+#progresso {
+    margin-top: 20px;
+    color: #555;
+    font-weight: bold;
+}
+
+#resultado {
+    margin-top: 25px;
+    color: slateblue;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .container-quiz {
+        width: 92%;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .container-quiz h1 {
+        font-size: 1.8rem;
+    }
+
+    #pergunta {
+        font-size: 1.1rem;
+    }
+
+    #alternativas button {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+}

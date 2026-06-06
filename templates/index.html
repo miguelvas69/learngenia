@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learngen.ia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/telaP.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../static/telaP.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <img src="../static/imagem/logoPB.png" id="logo">
+            </div>
+
+            <ul class="menu">
+                <li><a href="../templates/sobre.html">Sobre</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <div id="container-text">
+        <h1>Bem Vindo ao LearnGen.IA</h1>
+        <br>
+        <p>LearnGen.IA é uma plataforma educacional que transforma materiais de estudo em aprendizado interativo. Ao
+            enviar um PDF, o usuário pode gerar automaticamente quizzes ou listas de questões para revisar o conteúdo de
+            forma mais prática e eficiente. O objetivo do projeto é tornar os estudos mais dinâmicos, acessíveis e
+            personalizados por meio da tecnologia e da inteligência artificial.</p>
+    </div>
+    <div id="dados">
+        <form id="formUpload" action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" id="file" name="pdf" accept=".pdf" required>
+            <label for="file">upload file</label>
+            <br>
+            <div id="selecao">
+                <select name="quantidade">
+                    <option value="5">5 questões</option>
+                    <option value="10">10 questões</option>
+                    <option value="15">15 questões</option>
+                </select>
+
+                <select name="dificuldade">
+                    <option value="fácil">Fácil</option>
+                    <option value="média">Média</option>
+                    <option value="difícil">Difícil</option>
+                </select>
+
+                <select name="alternativas">
+                    <option value="4">4 alternativas</option>
+                    <option value="5">5 alternativas</option>
+                </select>
+
+                <select name="tipo_saida">
+                    <option value="pdf">PDF</option>
+                    <option value="quiz">Quiz</option>
+                </select>
+            </div>
+            <br>
+            <button type="submit" id="enviar">Enviar</button>
+
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("formUpload");
+        const notificacao = document.getElementById("notificacao");
+
+        form.addEventListener("submit", function () {
+            notificacao.style.display = "block";
+            notificacao.innerHTML = "Gerando conteúdo, aguarde...";
+        });
+    </script>
+
+</body>
+
+</html>

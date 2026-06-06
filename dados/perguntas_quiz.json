@@ -1,0 +1,52 @@
+[
+    {
+        "pergunta": "Conforme o texto, qual das causas listadas para a Segunda Guerra Mundial é apresentada como a origem do ressentimento que impulsionou o conflito?",
+        "alternativas": [
+            "A ascensão de regimes totalitários como o nazismo de Adolf Hitler",
+            "A expansão territorial agressiva de países como Alemanha, Itália e Japão",
+            "O Tratado de Versalhes, que impôs duras punições à Alemanha após a Primeira Guerra Mundial",
+            "As grandes batalhas como a de Stalingrado e o Dia D"
+        ],
+        "resposta": "O Tratado de Versalhes, que impôs duras punições à Alemanha após a Primeira Guerra Mundial"
+    },
+    {
+        "pergunta": "Qual dos seguintes acontecimentos é explicitamente mencionado como o marco inicial da Segunda Guerra Mundial, em 1939?",
+        "alternativas": [
+            "O desembarque na Normandia (Dia D)",
+            "O lançamento das bombas atômicas sobre Hiroshima e Nagasaki",
+            "A invasão da Polônia pela Alemanha",
+            "O Holocausto"
+        ],
+        "resposta": "A invasão da Polônia pela Alemanha"
+    },
+    {
+        "pergunta": "De acordo com o texto, qual é a principal razão para a criação da Organização das Nações Unidas (ONU) como uma das consequências da Segunda Guerra Mundial?",
+        "alternativas": [
+            "Para dividir o mundo em dois blocos ideológicos",
+            "Para gerenciar a ascensão de novas superpotências",
+            "Para promover a paz e prevenir futuros conflitos",
+            "Para implementar o Tratado de Versalhes"
+        ],
+        "resposta": "Para promover a paz e prevenir futuros conflitos"
+    },
+    {
+        "pergunta": "Qual evento específico, conforme o texto, foi o catalisador direto para a rendição do Japão em 1945, marcando o fim da Segunda Guerra Mundial?",
+        "alternativas": [
+            "A batalha de Stalingrado",
+            "O desembarque na Normandia",
+            "O lançamento de bombas atômicas pelos EUA sobre Hiroshima e Nagasaki",
+            "O fim do Holocausto"
+        ],
+        "resposta": "O lançamento de bombas atômicas pelos EUA sobre Hiroshima e Nagasaki"
+    },
+    {
+        "pergunta": "O texto descreve uma profunda transformação geopolítica após a Segunda Guerra Mundial. Qual das opções representa essa mudança, indicando tanto o declínio quanto a ascensão de poderes?",
+        "alternativas": [
+            "O declínio do Reino Unido e a ascensão da Polônia",
+            "A manutenção da supremacia europeia e o enfraquecimento dos Estados Unidos",
+            "O declínio da Europa e a ascensão dos Estados Unidos e da União Soviética como superpotências",
+            "A divisão do Japão e a unificação da Alemanha"
+        ],
+        "resposta": "O declínio da Europa e a ascensão dos Estados Unidos e da União Soviética como superpotências"
+    }
+]

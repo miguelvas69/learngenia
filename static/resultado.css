@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    background-color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pdf-card {
+    width: 90%;
+    max-width: 450px;
+    margin: 100px auto;
+    padding: 35px 25px;
+
+    background-color: white;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+
+    text-align: center;
+}
+
+.pdf-card h1 {
+    color: slateblue;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.pdf-card p {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+.pdf-card button {
+    width: 100%;
+    max-width: 250px;
+    height: 45px;
+
+    margin: 8px 0;
+
+    border: 2px solid slateblue;
+    border-radius: 8px;
+
+    background-color: white;
+    color: slateblue;
+
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.pdf-card button:hover {
+    background-color: slateblue;
+    color: white;
+}
+
+.btn-voltar {
+    opacity: 0.85;
+}
+
+#logoP{
+    width: 100px;
+    margin-left: -5px;
+}
+
+@media (max-width: 768px) {
+    .pdf-card {
+        margin: 60px auto;
+        padding: 25px 18px;
+    }
+
+    .pdf-card h1 {
+        font-size: 1.5rem;
+    }
+}
