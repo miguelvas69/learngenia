@@ -1,0 +1,52 @@
+[
+    {
+        "pergunta": "Segundo o texto, a principal razão pela qual os problemas ambientais no contexto da globalização demandam cooperação internacional é que eles:",
+        "alternativas": [
+            "São inerentemente complexos e exigem soluções tecnológicas avançadas de múltiplos países.",
+            "Representam custos financeiros elevados que apenas consórcios de nações podem arcar.",
+            "Ultrapassam as fronteiras nacionais e seus efeitos não se restringem a um único território.",
+            "Fomentam a criação de novas indústrias verdes, que se beneficiam de acordos comerciais."
+        ],
+        "resposta": "Ultrapassam as fronteiras nacionais e seus efeitos não se restringem a um único território."
+    },
+    {
+        "pergunta": "O texto aborda a globalização cultural destacando tanto o risco de homogeneização quanto a valorização de culturas diversas. Qual alternativa melhor descreve a natureza dessa interação conforme o texto?",
+        "alternativas": [
+            "A homogeneização cultural é um estágio inicial da globalização, que será superado pela valorização das culturas locais.",
+            "A valorização de culturas pouco conhecidas serve para mitigar completamente o risco de substituição de tradições locais por padrões globais.",
+            "Ambos os fenômenos, homogeneização e valorização de culturas, ocorrem simultaneamente como facetas da mesma dinâmica globalizante.",
+            "O risco de homogeneização é uma preocupação exagerada, pois a globalização visa primariamente ao intercâmbio e à diversificação cultural."
+        ],
+        "resposta": "Ambos os fenômenos, homogeneização e valorização de culturas, ocorrem simultaneamente como facetas da mesma dinâmica globalizante."
+    },
+    {
+        "pergunta": "A globalização gerou transformações profundas no mercado de trabalho. De acordo com o texto, qual é a principal motivação econômica para a transferência de fábricas e centros de produção para outros países e uma consequência direta para o trabalhador?",
+        "alternativas": [
+            "Buscar mercados consumidores emergentes e, consequentemente, aumentar a qualificação da mão de obra local.",
+            "Reduzir os custos operacionais e, em decorrência, intensificar a competição internacional por vagas.",
+            "Promover a diversificação cultural nas empresas e, assim, garantir maior estabilidade empregatícia.",
+            "Aproveitar incentivos fiscais governamentais e, por isso, expandir os benefícios trabalhistas."
+        ],
+        "resposta": "Reduzir os custos operacionais e, em decorrência, intensificar a competição internacional por vagas."
+    },
+    {
+        "pergunta": "O texto afirma que a 'internacionalização do conhecimento tornou-se um dos pilares do desenvolvimento científico e tecnológico contemporâneo.' Qual conjunto de fenômenos descritos no próprio texto ilustra de forma mais abrangente essa internacionalização na educação?",
+        "alternativas": [
+            "Apenas o aumento do acesso à internet para cursos e bibliotecas digitais.",
+            "Exclusivamente a participação de estudantes em intercâmbios culturais e linguísticos.",
+            "As parcerias internacionais entre universidades, intercâmbios de estudantes e a colaboração em projetos de pesquisa globais.",
+            "O surgimento de novas profissões em tecnologia da informação e análise de dados, impulsionando a demanda por ensino especializado."
+        ],
+        "resposta": "As parcerias internacionais entre universidades, intercâmbios de estudantes e a colaboração em projetos de pesquisa globais."
+    },
+    {
+        "pergunta": "Considerando a interdependência global mencionada no século XXI e o desafio da desigualdade social, qual a implicação mais complexa que o texto sugere sobre a natureza da globalização contemporânea?",
+        "alternativas": [
+            "A interdependência global, impulsionada por novas tecnologias, garante a superação da desigualdade social, distribuindo igualmente os benefícios.",
+            "Enquanto a globalização impulsiona o crescimento econômico e novas tecnologias, ela também gera vulnerabilidades e não garante a distribuição equitativa de seus benefícios, mantendo a desigualdade como desafio.",
+            "A concentração de riqueza em pequenos grupos é um fator temporário que será naturalmente corrigido pelos avanços da inteligência artificial.",
+            "Eventos como pandemias e conflitos internacionais são independentes da globalização e não afetam a distribuição de riqueza no mundo."
+        ],
+        "resposta": "Enquanto a globalização impulsiona o crescimento econômico e novas tecnologias, ela também gera vulnerabilidades e não garante a distribuição equitativa de seus benefícios, mantendo a desigualdade como desafio."
+    }
+]
