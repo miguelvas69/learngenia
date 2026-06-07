@@ -183,7 +183,7 @@ label {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
     .navbar {
         display: flex;
         gap: 15px;
@@ -222,7 +222,7 @@ label {
 }
 
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 730px) and (max-width: 1024px) {
     .navbar {
         padding: 0 30px;
     }
