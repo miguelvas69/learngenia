@@ -16,7 +16,6 @@ async function carregarQuiz() {
 }
 
 function mostrarPergunta() {
-
     const atual = perguntas[indice];
 
     perguntaEl.textContent = atual.pergunta;
@@ -27,13 +26,11 @@ function mostrarPergunta() {
     alternativasEl.innerHTML = "";
 
     atual.alternativas.forEach(function (alternativa) {
-
         const botao = document.createElement("button");
 
         botao.textContent = alternativa;
 
         botao.onclick = function () {
-
             if (alternativa === atual.resposta) {
                 pontuacao++;
             }
@@ -67,14 +64,11 @@ function finalizarQuiz() {
         <button id="inicio">Página Principal</button>
     `;
 
-    const novoQuiz = document.getElementById("novoQuiz");
-    const inicio = document.getElementById("inicio");
-
-    novoQuiz.onclick = function () {
+    document.getElementById("novoQuiz").onclick = function () {
         location.reload();
     };
 
-    inicio.onclick = function () {
+    document.getElementById("inicio").onclick = function () {
         window.location.href = "/";
     };
 }

@@ -2,3 +2,5 @@ flask
 pypdf
 python-dotenv
 google-genai
+reportlab
+werkzeug

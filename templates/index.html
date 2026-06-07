@@ -23,7 +23,7 @@
             </div>
 
             <ul class="menu">
-                <li><a href="../templates/sobre.html">Sobre</a></li>
+                <li><a href="/sobre">Sobre</a></li>
             </ul>
 
         </nav>
@@ -39,7 +39,8 @@
     <div id="dados">
         <form id="formUpload" action="/upload" method="POST" enctype="multipart/form-data">
             <input type="file" id="file" name="pdf" accept=".pdf" required>
-            <label for="file">upload file</label>
+            <label for="file">adcionar arquivo</label>
+            <p id="nome-arquivo">Nenhum arquivo selecionado</p>
             <br>
             <div id="selecao">
                 <select name="quantidade">
@@ -69,16 +70,36 @@
 
         </form>
     </div>
+    <div class="preloader" id="preloader">
+        <div class="loader" id="loader">
+            trabalhando...
+        </div>
+    </div>
 
     <script>
-        const form = document.getElementById("formUpload");
-        const notificacao = document.getElementById("notificacao");
 
-        form.addEventListener("submit", function () {
-            notificacao.style.display = "block";
-            notificacao.innerHTML = "Gerando conteúdo, aguarde...";
-        });
-    </script>
+    const form = document.getElementById("formUpload");
+    const preloader = document.getElementById("preloader");
+    const inputFile = document.getElementById("file");
+    const nomeArquivo = document.getElementById("nome-arquivo");
+
+    preloader.style.display = "none";
+
+    form.addEventListener("submit", function () {
+
+        preloader.style.display = "flex";
+
+    });
+
+    inputFile.addEventListener("change", function () {
+        if (inputFile.files.length > 0) {
+            nomeArquivo.textContent = inputFile.files[0].name;
+        } else {
+            nomeArquivo.textContent = "Nenhum arquivo selecionado";
+        }
+    });
+
+</script>
 
 </body>
 

@@ -87,7 +87,7 @@ Conteúdo para análise:
 """
 
     resposta = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.5-flash",
         contents=prompt
     )
 
@@ -100,7 +100,7 @@ Gere apenas um array JSON válido.
 A resposta deve começar com [ e terminar com ].
 Não escreva nenhuma frase antes ou depois.
 Não use markdown.
-não faça qualquer menção ao texto base
+Não faça qualquer menção ao texto base.
 
 Crie {quantidade} perguntas de múltipla escolha de nível {dificuldade}.
 Cada pergunta deve ter exatamente {alternativas} alternativas.
@@ -119,7 +119,7 @@ Conteúdo:
 """
 
     resposta = client.models.generate_content(
-        model="gemini-2.5-flash",
+        model="gemini-3.5-flash",
         contents=prompt
     )
 
@@ -202,17 +202,6 @@ def gerar_pdf(perguntas):
 
 @app.route("/upload", methods=["POST"])
 def upload():
-
-    print("Entrou na rota upload")
-
-    arquivo = request.files["pdf"]
-
-    print("Arquivo:", arquivo.filename)
-
-    tipo_saida = request.form["tipo_saida"]
-
-    print("Tipo:", tipo_saida)
-
     arquivo = request.files["pdf"]
 
     if arquivo.filename == "":
@@ -266,7 +255,6 @@ def upload():
     return "Tipo de saída inválido."
 
 
-
 @app.route("/download")
 def download():
     caminho_pdf = os.path.join(GENERATED_FOLDER, "questoes.pdf")
@@ -275,6 +263,7 @@ def download():
         caminho_pdf,
         as_attachment=True
     )
+
 
 @app.route("/api/perguntas")
 def api_perguntas():
@@ -289,6 +278,7 @@ def api_perguntas():
 
     return perguntas
 
+
 @app.route("/novo_quiz")
 def novo_quiz():
 
@@ -301,6 +291,10 @@ def novo_quiz():
         perguntas = json.load(arquivo)
 
     return render_template("quiz.html")
+
+@app.route("/sobre")
+def sobre():
+    return render_template("sobre.html")
 
 
 if __name__ == "__main__":
