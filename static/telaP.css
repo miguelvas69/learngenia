@@ -170,6 +170,47 @@ label {
     font-weight: bold;
 }
 
+#for{
+    color: slateblue;
+    font-weight: 1000;
+}
+
+#selecao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+
+#selecao select {
+    width: 100%;
+    height: 50px;
+
+    border: 2px solid slateblue;
+    border-radius: 12px;
+
+    font-size: 1rem;
+    color: slateblue;
+    background-color: white;
+
+    padding: 0 10px;
+}
+
+@media (min-width: 769px) {
+    #selecao {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        max-width: none;
+    }
+
+    #selecao select {
+        width: 180px;
+    }
+}
+
 @media (max-width: 768px) {
     #dados form {
         width: 100%;
@@ -181,12 +222,6 @@ label {
         font-size: 0.95rem;
     }
 }
-
-#for{
-    color: slateblue;
-    font-weight: 1000;
-}
-
 
 @media (max-width: 768px) {
     .navbar {
