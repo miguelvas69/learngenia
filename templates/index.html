@@ -35,11 +35,17 @@
             enviar um PDF, o usuário pode gerar automaticamente quizzes ou listas de questões para revisar o conteúdo de
             forma mais prática e eficiente. O objetivo do projeto é tornar os estudos mais dinâmicos, acessíveis e
             personalizados por meio da tecnologia e da inteligência artificial.</p>
+
+        <p id="for">
+            formatos aceitos:
+                PDF (.pdf)
+                Slide (.pdf / .pttx)
+        </p>
     </div>
     <div id="dados">
         <form id="formUpload" action="/upload" method="POST" enctype="multipart/form-data">
-            <input type="file" id="file" name="pdf" accept=".pdf" required>
-            <label for="file">adcionar arquivo</label>
+            <input type="file" id="file" name="pdf" accept=".pdf,.pptx" required>
+            <label for="file">adcionar arquivo PDF/SLIDE</label>
             <p id="nome-arquivo">Nenhum arquivo selecionado</p>
             <br>
             <div id="selecao">

@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 from pypdf import PdfReader
 from dotenv import load_dotenv
 from google import genai
+from pptx import Presentation
 
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
@@ -161,6 +162,18 @@ def salvar_resultado_pdf(perguntas):
     with open(caminho, "w", encoding="utf-8") as arquivo:
         json.dump(dados, arquivo, ensure_ascii=False, indent=4)
 
+def extrair_texto_pptx(caminho_pptx):
+    apresentacao = Presentation(caminho_pptx)
+
+    texto = ""
+
+    for slide in apresentacao.slides:
+        for elemento in slide.shapes:
+            if hasattr(elemento, "text"):
+                texto += elemento.text + "\n"
+
+    return texto
+
 
 def salvar_quiz(perguntas):
     caminho = os.path.join(DADOS_FOLDER, "perguntas_quiz.json")
@@ -222,7 +235,19 @@ def upload():
 
     arquivo.save(caminho)
 
-    texto = extrair_texto_pdf(caminho)
+    nome_arquivo = arquivo.filename.lower()
+
+    if nome_arquivo.endswith(".pdf"):
+        texto = extrair_texto_pdf(caminho)
+
+    elif nome_arquivo.endswith(".pptx"):
+        texto = extrair_texto_pptx(caminho)
+
+    else:
+        return render_template(
+            "index.html",
+            mensagem="Formato inválido. Envie apenas PDF ou PPTX."
+        )
 
     if tipo_saida == "pdf":
         perguntas = gerar_perguntas_pdf(

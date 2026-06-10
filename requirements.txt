@@ -5,3 +5,4 @@ google-genai
 reportlab
 werkzeug
 gunicorn
+python-pptx

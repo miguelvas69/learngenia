@@ -182,6 +182,11 @@ label {
     }
 }
 
+#for{
+    color: slateblue;
+    font-weight: 1000;
+}
+
 
 @media (max-width: 768px) {
     .navbar {
