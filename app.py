@@ -1,5 +1,6 @@
 import os
 import json
+import time
 from datetime import datetime
 
 from flask import Flask, render_template, request, send_file
@@ -29,6 +30,39 @@ os.makedirs(DADOS_FOLDER, exist_ok=True)
 
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
+# Use um modelo válido da sua conta.
+# Se der 503, o código tenta novamente automaticamente.
+MODELO_GEMINI = "gemini-2.5-flash"
+
+# Limita o texto enviado para diminuir erro por prompt grande.
+LIMITE_TEXTO = 10000
+
+
+def chamar_gemini(prompt, tentativas=5, espera=6):
+    """Chama o Gemini com retentativas para reduzir falhas 503 temporárias."""
+
+    ultimo_erro = None
+
+    for tentativa in range(1, tentativas + 1):
+        try:
+            resposta = client.models.generate_content(
+                model=MODELO_GEMINI,
+                contents=prompt
+            )
+            return resposta.text
+
+        except Exception as erro:
+            ultimo_erro = erro
+            print(f"Erro ao chamar Gemini. Tentativa {tentativa}/{tentativas}: {erro}")
+
+            if tentativa < tentativas:
+                time.sleep(espera)
+
+    raise RuntimeError(
+        "A IA está temporariamente indisponível ou sobrecarregada. "
+        "Tente novamente em alguns minutos."
+    ) from ultimo_erro
+
 
 @app.route("/")
 def index():
@@ -46,7 +80,18 @@ def extrair_texto_pdf(caminho_pdf):
     return texto
 
 
+def preparar_texto(texto):
+    texto = texto.strip()
+
+    if len(texto) > LIMITE_TEXTO:
+        texto = texto[:LIMITE_TEXTO]
+
+    return texto
+
+
 def gerar_perguntas_pdf(texto, quantidade, dificuldade, alternativas):
+    texto = preparar_texto(texto)
+
     prompt = f"""
 Você é um professor especialista em elaboração de questões educacionais.
 
@@ -87,15 +132,12 @@ Conteúdo para análise:
 {texto}
 """
 
-    resposta = client.models.generate_content(
-        model="gemini-3.5-flash",
-        contents=prompt
-    )
-
-    return resposta.text
+    return chamar_gemini(prompt)
 
 
 def gerar_perguntas_quiz(texto, quantidade, dificuldade, alternativas):
+    texto = preparar_texto(texto)
+
     prompt = f"""
 Gere apenas um array JSON válido.
 A resposta deve começar com [ e terminar com ].
@@ -119,12 +161,7 @@ Conteúdo:
 {texto}
 """
 
-    resposta = client.models.generate_content(
-        model="gemini-3.5-flash",
-        contents=prompt
-    )
-
-    texto_resposta = resposta.text.strip()
+    texto_resposta = chamar_gemini(prompt).strip()
     texto_resposta = texto_resposta.replace("```json", "")
     texto_resposta = texto_resposta.replace("```", "")
     texto_resposta = texto_resposta.strip()
@@ -161,6 +198,7 @@ def salvar_resultado_pdf(perguntas):
 
     with open(caminho, "w", encoding="utf-8") as arquivo:
         json.dump(dados, arquivo, ensure_ascii=False, indent=4)
+
 
 def extrair_texto_pptx(caminho_pptx):
     apresentacao = Presentation(caminho_pptx)
@@ -220,7 +258,7 @@ def upload():
     if arquivo.filename == "":
         return render_template(
             "index.html",
-            mensagem="Selecione um PDF antes de enviar."
+            mensagem="Selecione um PDF ou PPTX antes de enviar."
         )
 
     quantidade = request.form["quantidade"]
@@ -249,33 +287,47 @@ def upload():
             mensagem="Formato inválido. Envie apenas PDF ou PPTX."
         )
 
-    if tipo_saida == "pdf":
-        perguntas = gerar_perguntas_pdf(
-            texto,
-            quantidade,
-            dificuldade,
-            alternativas
-        )
-
-        salvar_resultado_pdf(perguntas)
-        gerar_pdf(perguntas)
-
+    if not texto.strip():
         return render_template(
-            "resultado.html",
-            perguntas=perguntas
+            "index.html",
+            mensagem="Não foi possível extrair texto do arquivo enviado."
         )
 
-    if tipo_saida == "quiz":
-        perguntas = gerar_perguntas_quiz(
-            texto,
-            quantidade,
-            dificuldade,
-            alternativas
+    try:
+        if tipo_saida == "pdf":
+            perguntas = gerar_perguntas_pdf(
+                texto,
+                quantidade,
+                dificuldade,
+                alternativas
+            )
+
+            salvar_resultado_pdf(perguntas)
+            gerar_pdf(perguntas)
+
+            return render_template(
+                "resultado.html",
+                perguntas=perguntas
+            )
+
+        if tipo_saida == "quiz":
+            perguntas = gerar_perguntas_quiz(
+                texto,
+                quantidade,
+                dificuldade,
+                alternativas
+            )
+
+            salvar_quiz(perguntas)
+
+            return render_template("quiz.html")
+
+    except Exception as erro:
+        print("Erro no processamento:", erro)
+        return render_template(
+            "index.html",
+            mensagem="A IA está temporariamente indisponível ou sobrecarregada. Tente novamente em alguns minutos."
         )
-
-        salvar_quiz(perguntas)
-
-        return render_template("quiz.html")
 
     return "Tipo de saída inválido."
 
@@ -292,13 +344,9 @@ def download():
 
 @app.route("/api/perguntas")
 def api_perguntas():
+    caminho = os.path.join(DADOS_FOLDER, "perguntas_quiz.json")
 
-    with open(
-        "dados/perguntas_quiz.json",
-        "r",
-        encoding="utf-8"
-    ) as arquivo:
-
+    with open(caminho, "r", encoding="utf-8") as arquivo:
         perguntas = json.load(arquivo)
 
     return perguntas
@@ -306,16 +354,13 @@ def api_perguntas():
 
 @app.route("/novo_quiz")
 def novo_quiz():
+    caminho = os.path.join(DADOS_FOLDER, "perguntas_quiz.json")
 
-    with open(
-        "dados/perguntas_quiz.json",
-        "r",
-        encoding="utf-8"
-    ) as arquivo:
-
+    with open(caminho, "r", encoding="utf-8") as arquivo:
         perguntas = json.load(arquivo)
 
     return render_template("quiz.html")
+
 
 @app.route("/sobre")
 def sobre():
